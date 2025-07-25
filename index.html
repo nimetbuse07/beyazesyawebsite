@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="dynamic-title">Teknik Servis Hizmeti</title>
+  <meta id="dynamic-meta" name="description" content="Profesyonel teknik servis hizmeti sunuyoruz. İstanbul içi hızlı servis." />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 20px 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #0056b3;
+    }
+
+    main {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #444;
+    }
+
+    .call-button {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 15px 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .call-button:hover {
+      background-color: #218838;
+    }
+
+    /* Sticky buton */
+    .sticky-call {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #007BFF;
+      color: #fff;
+      padding: 15px 30px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+      z-index: 1000;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .sticky-call:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .sticky-call i {
+      margin-right: 8px;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.6); }
+      70% { box-shadow: 0 0 0 15px rgba(0, 123, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 123, 255, 0); }
+    }
+
+    footer nav {
+      margin-top: 10px;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 24px;
+      }
+      h2 {
+        font-size: 20px;
+      }
+      p {
+        font-size: 16px;
+      }
+      .sticky-call {
+        font-size: 14px;
+        padding: 12px 20px;
+        right: 15px;
+        bottom: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Teknik Servis Hizmetleri</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmet.html?service=Beyaz+Eşya+Servisi">Hizmetlerimiz</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+      <a href="gizlilik.html">Gizlilik</a>
+      <a href="kvkk.html">KVKK</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="service-title">Teknik Servis</h2>
+    <p id="service-description">
+      Cihazlarınız için uzman teknik servis kadromuzla İstanbul genelinde hizmet veriyoruz.
+    </p>
+    <a href="tel:+905555555555" class="call-button">📞 Hemen Servis Çağır</a>
+  </main>
+
+  <footer>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmet.html?service=Bulasik+Makinesi">Bulaşık Makinesi</a>
+      <a href="hizmet.html?service=Kombi">Kombi</a>
+      <a href="hizmet.html?service=Buzdolabi">Buzdolabı</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </footer>
+
+  <a href="tel:+905555555555" class="sticky-call">
+    <i>📞</i> Hemen Ara
+  </a>
+
+  <script id="schema-script" type="application/ld+json"></script>
+
+  <script>
+    function getQueryParam(name) {
+      const params = new URLSearchParams(window.location.search);
+      return params.get(name);
+    }
+
+    function decodeServiceName(name) {
+      return decodeURIComponent(name.replace(/\+/g, ' '));
+    }
+
+    const rawService = getQueryParam('service');
+    const serviceName = rawService ? decodeServiceName(rawService) : "Teknik Servis";
+
+    // Dinamik başlık ve açıklama
+    document.getElementById('dynamic-title').innerText = `${serviceName} Servisi | Teknik Destek`;
+    document.getElementById('dynamic-meta').setAttribute("content", `${serviceName} için uzman teknik servis. İstanbul'da hızlı ve garantili servis.`);
+    document.getElementById('service-title').innerText = `${serviceName} Tamir Servisi`;
+    document.getElementById('service-description').innerText = `Garantisi bitmiş ${serviceName.toLowerCase()} cihazlarınız için uzman kadromuzla profesyonel teknik servis hizmeti sunuyoruz.`;
+
+    // Yapısal veri - JSON-LD
+    const schemaData = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": `${serviceName} Tamiri`,
+      "serviceType": `${serviceName} Teknik Servisi`,
+      "provider": {
+        "@type": "LocalBusiness",
+        "name": "Teknik Servis",
+        "url": window.location.href,
+        "telephone": "+90 555 555 55 55",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "İstanbul",
+          "addressCountry": "TR"
+        }
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "İstanbul"
+      }
+    };
+
+    document.getElementById('schema-script').textContent = JSON.stringify(schemaData, null, 2);
+  </script>
+</body>
+</html>

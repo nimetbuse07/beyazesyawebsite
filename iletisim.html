@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İletişim | Teknik Servis</title>
+  <meta name="description" content="Bize telefonla ulaşın veya iletişim formumuzu kullanın. Garantisi bitmiş cihazlar için servis hizmeti sunuyoruz.">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #f1f1f1;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    main {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    a.tel-link {
+      display: inline-block;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 10px 0;
+    }
+    .info {
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+    .warning {
+      margin-top: 30px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>İletişim</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmet.html">Hizmetlerimiz</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="#">İletişim</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Bize Ulaşın</h2>
+
+    <p>Teknik servis talebiniz için hemen bizi arayın:</p>
+    <a class="tel-link" href="tel:+905531679444">📞 +90 553 167 94 44</a>
+
+    <div class="info">
+      <p><strong>Adres:</strong> Örnek Mah. Servis Sok. No:12, İstanbul</p>
+      <p><strong>E-posta:</strong> info@teknikservis.com</p>
+      <p><strong>Çalışma Saatleri:</strong> Pazartesi - Cumartesi: 09:00 - 19:00</p>
+    </div>
+
+    <div class="warning">
+      ⚠️ Bu web sitesi <strong>yetkili servis değildir</strong>. Yalnızca garantisi olmayan cihazlar için hizmet sunmaktayız.
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Teknik Servis | Bu site yetkili servis değildir. Garantisi olmayan cihazlar için hizmet sunar.</p>
+  </footer>
+
+<script>
+  // URL'den 'service' parametresini al
+  const params = new URLSearchParams(window.location.search);
+  const service = params.get('service');
+
+  if (service) {
+    // <title> güncelle
+    document.title = `${service} | Teknik Servis`;
+
+    // Meta description güncelle
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute('content', `${service} için uzman teknik servis hizmeti sunuyoruz.`);
+    }
+
+    // H1 başlık güncelle
+    const h1 = document.querySelector('header h1');
+    if (h1) {
+      h1.textContent = `${service}`;
+    }
+
+    // H2 başlık güncelle
+    const h2 = document.querySelector('main h2');
+    if (h2) {
+      h2.textContent = `${service} Hizmeti`;
+    }
+
+    // Açıklama paragrafı güncelle
+    const p = document.querySelector('main p');
+    if (p) {
+      p.textContent = `Garantisi bitmiş ${service.toLowerCase()} için uzman kadromuzla tamir, bakım ve onarım hizmeti sunuyoruz.`;
+    }
+  }
+</script>
+
+  <div class="yorumlar">
+  <p>⭐️⭐️⭐️⭐️⭐️ Kombi tamiri konusunda çok memnun kaldık.</p>
+  <p>⭐️⭐️⭐️⭐️ Hızlı ve güvenilir bir servis. Tavsiye ederim.</p>
+  ...
+</div>
+
+</body>
+</html>

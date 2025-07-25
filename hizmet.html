@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Tüm Teknik Servis Hizmetlerimiz</title>
+  <meta name="description" content="Buzdolabı, çamaşır makinesi, kombi, klima ve diğer cihazlar için sunduğumuz teknik servis hizmetlerini keşfedin.">
+  <meta property="og:type" content="website" />
+  <link rel="canonical" id="canonical-link" href="">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header, footer {
+      background-color: #f1f1f1;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007BFF;
+    }
+    main {
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+    .warning {
+      margin-top: 30px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="service-title">Hizmet</h1>
+    <nav>
+      <a href="index.html">Ana Sayfa</a>
+      <a href="hizmet.html">Hizmetlerimiz</a>
+      <a href="hakkimizda.html">Hakkımızda</a>
+      <a href="iletisim.html">İletişim</a>
+    </nav>
+  </header>
+
+  <main>
+    <p id="service-description">Seçilen hizmet hakkında bilgiler burada görünecektir.</p>
+    <div class="warning">
+      ⚠️ Bu site yetkili servis değildir. Sadece garantisi olmayan cihazlara hizmet verilmektedir.
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Teknik Servis | Bu site yetkili servis değildir. Garantili ürünler için üretici firmaya başvurunuz.</p>
+  </footer>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+
+    if (service) {
+      const formattedService = decodeURIComponent(service.replace(/\+/g, " "));
+      const seoTitle = `${formattedService} Teknik Servisi | Uygun Fiyat & Hızlı Servis`;
+      const seoDesc = `${formattedService} için İstanbul genelinde garantisiz ürünlere özel hızlı, ekonomik ve profesyonel teknik servis. Randevu almak için hemen arayın!`;
+      const seoURL = `${window.location.origin}${window.location.pathname}?service=${encodeURIComponent(service)}`;
+
+      // Sayfa başlığı ve açıklamaları
+      document.title = seoTitle;
+      document.querySelector("meta[name='description']").setAttribute("content", seoDesc);
+      document.getElementById("service-title").textContent = formattedService;
+      document.getElementById("service-description").textContent =
+        `${formattedService} kapsamında profesyonel teknik servis hizmeti sunuyoruz. Garantisi bitmiş cihazlarınıza özel hızlı ve ekonomik çözümler sunuyoruz.`;
+
+      // Canonical URL
+      document.getElementById("canonical-link").setAttribute("href", seoURL);
+
+      // Open Graph
+      const ogTags = [
+        { property: "og:title", content: seoTitle },
+        { property: "og:description", content: seoDesc },
+        { property: "og:url", content: seoURL }
+      ];
+      ogTags.forEach(tag => {
+        const meta = document.createElement("meta");
+        meta.setAttribute("property", tag.property);
+        meta.setAttribute("content", tag.content);
+        document.head.appendChild(meta);
+      });
+
+      // Schema.org structured data
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": formattedService,
+        "description": seoDesc,
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Teknik Servis",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Örnek Mah. Servis Sk. No:1",
+            "addressLocality": "İstanbul",
+            "addressCountry": "TR"
+          },
+          "telephone": "+90-555-000-0000"
+        }
+      };
+      const schemaScript = document.createElement("script");
+      schemaScript.type = "application/ld+json";
+      schemaScript.textContent = JSON.stringify(schema, null, 2);
+      document.head.appendChild(schemaScript);
+    }
+  </script>
+
+</body>
+</html>
